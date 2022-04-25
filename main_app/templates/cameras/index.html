@@ -4,7 +4,7 @@
 <h1>Camera List</h1>
 
 {% for camera in cameras %}
-<a href="{url 'details camera.id}">
+<a href="{% url 'detail' camera.id %}">
   <div class="card">
     <div class="card-content">
       <span class="card-title">{{ camera.name }}</span>

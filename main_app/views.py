@@ -13,3 +13,7 @@ def about(request):
 def cameras_index(request):
     cameras = Camera.objects.all()
     return render(request, 'cameras/index.html', { 'cameras': cameras })
+
+def cameras_detail(request, camera_id):
+    camera = Camera.objects.get(id=camera_id)
+    return render(request, 'cameras/detail.html', { 'camera': camera })
