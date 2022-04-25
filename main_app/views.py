@@ -9,3 +9,6 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def cameras_index(request):
+    return render(request, 'cameras/index.html', { 'cameras': cameras })
