@@ -16,4 +16,5 @@ urlpatterns = [
     path('lenses/<int:pk>/update/', views.LensUpdate.as_view(), name='lenses_update'),
     path('lenses/<int:pk>/delete/', views.LensDelete.as_view(), name='lenses_delete'),
     path('cameras/<int:camera_id>/assoc_lens/<int:lens_id>/', views.assoc_lens, name='assoc_lens'),
+    path('cameras/<int:camera_id>/add_photo/', views.add_photo, name='add_photo'),
 ]
