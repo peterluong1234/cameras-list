@@ -5,6 +5,7 @@ from django.urls import reverse
 class Camera(models.Model):
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=100)
+    lens_mount = models.CharField(max_length=50)
     sensor = models.CharField(max_length=50)
     resolution = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(max_length=250)
@@ -14,3 +15,6 @@ class Camera(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'camera_id': self.id})
+
+# class Lens(models.Model):
+#     name = models.CharField(max_length=20)
