@@ -3,6 +3,10 @@ from django.urls import reverse
 
 # Create your models here.
 
+DEGREES = (
+    ('MN', 'Minor'),
+    ('MJ', 'Major')
+)
 
 class Lens(models.Model):
     name = models.CharField(max_length=20)
@@ -32,3 +36,18 @@ class Camera(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'camera_id': self.id})
 
+
+class Recall(models.Model):
+    date = models.DateField()
+    degree = models.CharField(
+        max_length=2,
+        choices=DEGREES,
+        default=DEGREES[0][0]
+    )
+
+    camera = models.ForeignKey(Camera, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.get_degree_display()} recall on {self.date}"
+
+    
