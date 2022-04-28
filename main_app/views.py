@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Camera
+from django.views.generic import ListView, DetailView
+from .models import Camera, Lens
 # Add the following import
 from django.http import HttpResponse
 
@@ -31,3 +32,21 @@ class CameraUpdate(UpdateView):
 class CameraDelete(DeleteView):
     model = Camera
     success_url = '/cameras/'
+
+class LensList(ListView):
+  model = Lens
+
+class LensDetail(DetailView):
+  model = Lens
+
+class LensCreate(CreateView):
+  model = Lens
+  fields = '__all__'
+
+class LensUpdate(UpdateView):
+  model = Lens
+  fields = ['name', 'lens_mount', 'focal_length', 'aperture']
+
+class LensDelete(DeleteView):
+  model = Lens
+  success_url = '/lenses/'
