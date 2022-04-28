@@ -33,7 +33,7 @@
         {% for recall in camera.recall_set.all %}
           <tr>
             <td>{{recall.date}}</td>
-            <td>{{recall.get_meal_display}}</td>
+            <td>{{recall.degree}}</td>
           </tr>
         {% endfor %}
       </tbody>
@@ -92,7 +92,7 @@
     autoClose: true
   });
 
-  const selectEl = document.getElementById('id_recall');
+  const selectEl = document.getElementById('id_degree');
   M.FormSelect.init(selectEl);
 </script>
 
