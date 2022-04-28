@@ -9,7 +9,7 @@ class Camera(models.Model):
     sensor = models.CharField(max_length=50)
     resolution = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(max_length=250)
-    Lens = models.ManyToManyField(Lens)
+    # Lens = models.ManyToManyField(Lens)
     
     def __str__(self):
         return f"{self.brand} {self.name}"

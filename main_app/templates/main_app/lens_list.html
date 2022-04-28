@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Lens List</h1>
+
+{% for lens in lenses_list %}
+  <a href="{% url 'lenses_detail' lens.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ lens.name }}</span>
+            <p>Lens Mount: {{ lens.lens_mount }}</p>
+            <p>Focal Length: {{ lens.focal_length }}</p>
+            <p>Aperture: {{ lens.aperture }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
