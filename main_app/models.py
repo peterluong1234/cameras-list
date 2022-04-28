@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Camera(models.Model):
@@ -10,3 +11,6 @@ class Camera(models.Model):
     
     def __str__(self):
         return f"{self.brand} {self.name}"
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'camera_id': self.id})

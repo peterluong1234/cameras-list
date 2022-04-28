@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Camera
 # Add the following import
 from django.http import HttpResponse
@@ -22,4 +22,12 @@ def cameras_detail(request, camera_id):
 class CameraCreate(CreateView):
     model = Camera
     fields = '__all__'
+    success_url = '/cameras/'
+
+class CameraUpdate(UpdateView):
+    model = Camera
+    fields = ['brand', 'resolution', 'description']
+
+class CameraDelete(DeleteView):
+    model = Camera
     success_url = '/cameras/'

@@ -11,6 +11,10 @@
     <p>Sensor: {{ camera.sensor }}</p>
     <p>Resolution: {{ camera.resolution }} mp</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'cameras_update' camera.id %}">Edit</a>
+    <a href="{% url 'cameras_delete' camera.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}
