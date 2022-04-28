@@ -38,7 +38,7 @@ class Camera(models.Model):
 
 
 class Recall(models.Model):
-    date = models.DateField()
+    date = models.DateField('Recall Date')
     degree = models.CharField(
         max_length=2,
         choices=DEGREES,

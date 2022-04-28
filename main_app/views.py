@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Camera, Lens
+from .forms import RecallForm
+
 # Add the following import
 from django.http import HttpResponse
+
 
 # Define the home view
 def home(request):
@@ -20,8 +23,11 @@ def cameras_detail(request, camera_id):
     camera = Camera.objects.get(id=camera_id)
     lens_camera_doesnt_have = Lens.objects.exclude(id__in = camera.lens.all().values_list('id'))
 
+    recall_form = RecallForm()
+
     return render(request, 'cameras/detail.html', { 
         'camera': camera, 
+        'recall_form': recall_form,
         'lens': lens_camera_doesnt_have
     })
 
