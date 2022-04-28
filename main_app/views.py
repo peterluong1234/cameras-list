@@ -18,7 +18,12 @@ def cameras_index(request):
 
 def cameras_detail(request, camera_id):
     camera = Camera.objects.get(id=camera_id)
-    return render(request, 'cameras/detail.html', { 'camera': camera })
+    lens_camera_doesnt_have = Lens.objects.exclude(id__in = camera.lens.all().values_list('id'))
+
+    return render(request, 'cameras/detail.html', { 
+        'camera': camera, 
+        'lens': lens_camera_doesnt_have
+    })
 
 class CameraCreate(CreateView):
     model = Camera
@@ -27,7 +32,7 @@ class CameraCreate(CreateView):
 
 class CameraUpdate(UpdateView):
     model = Camera
-    fields = ['brand', 'resolution', 'description']
+    fields = '__all__'
 
 class CameraDelete(DeleteView):
     model = Camera
@@ -50,3 +55,8 @@ class LensUpdate(UpdateView):
 class LensDelete(DeleteView):
   model = Lens
   success_url = '/lenses/'
+
+def assoc_lens(request, camera_id, lens_id):
+  # Note that you can pass a toy's id instead of the whole object
+  Camera.objects.get(id=camera_id).lens.add(lens_id)
+  return redirect('detail', camera_id=camera_id)
