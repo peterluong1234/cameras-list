@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Camera, Lens
+from .models import Camera, Lens, Recall
 from .forms import RecallForm
 
 # Add the following import
@@ -30,6 +30,17 @@ def cameras_detail(request, camera_id):
         'recall_form': recall_form,
         'lens': lens_camera_doesnt_have
     })
+
+def add_recall(request, camera_id):
+    form = RecallForm(request.POST)
+     # validate the form
+    if form.is_valid():
+    # don't save the form to the db until it
+    # has the cat_id assigned
+        new_recall = form.save(commit=False)
+        new_recall.camera_id = camera_id
+        new_recall.save()
+    return redirect('detail', camera_id=camera_id)
 
 class CameraCreate(CreateView):
     model = Camera

@@ -9,6 +9,7 @@ urlpatterns = [
     path('cameras/create/', views.CameraCreate.as_view(), name='cameras_create'),
     path('cameras/<int:pk>/update', views.CameraUpdate.as_view(), name='cameras_update'),
     path('cameras/<int:pk>/delete/', views.CameraDelete.as_view(), name='cameras_delete'),
+    path('cameras/<int:camera_id>/add_recall/', views.add_recall, name='add_recall'),
     path('lenses/', views.LensList.as_view(), name='lenses_index'),
     path('lenses/<int:pk>/', views.LensDetail.as_view(), name='lenses_detail'),
     path('lenses/create/', views.LensCreate.as_view(), name='lenses_create'),
